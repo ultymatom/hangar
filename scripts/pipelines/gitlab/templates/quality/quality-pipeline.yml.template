@@ -1,0 +1,15 @@
+default:
+  image: maven:3-jdk-11
+
+variables:
+  PROJECT_PATH: .
+  SONAR_URL: $sonarUrl
+# mark to insert additional artifact env var #
+
+$pipelineName:
+  stage: quality
+  script:
+    - sh .pipelines/scripts/quality.sh
+  dependencies:
+    - $buildPipelineName
+# mark to insert step for additonal artifact #
